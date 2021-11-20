@@ -6,7 +6,6 @@ let canvas = document.createElement('div')
 canvas.id = 'canvas'
 body.appendChild(canvas)
 
-
 let palate = document.getElementById('palate')
 
 SIZE = 35*35
@@ -23,20 +22,33 @@ COLORS = ['rebeccapurple', 'white', 'whitesmoke', 'gainsboro', 'lightgray', 'sil
 
 console.log(COLORS.length)
 
-pixel = document.createElement("div")
-pixel.className = "pixel"
-pixel.style.width = "10%"
-pixel.style.backgroundColor = 'white'
-// console.log(String(100 / Math.sqrt(SIZE)) + '%')
-pixel.style.width = String(100 / Math.sqrt(SIZE)) + '%'
-pixel.style.height = String(100 / Math.sqrt(SIZE)) + '%'
-pixel.id = 'x'
-
-
-
+initCanvas()
 TOOLS.forEach(createTool)
 COLORS.forEach(createPaintPot)
 
+function initCanvas(){
+    pixel = document.createElement("div")
+    pixel.className = "pixel"
+    pixel.style.width = "10%"
+    pixel.style.backgroundColor = 'white'
+    // console.log(String(100 / Math.sqrt(SIZE)) + '%')
+    pixel.style.width = String(100 / Math.sqrt(SIZE)) + '%'
+    pixel.style.height = String(100 / Math.sqrt(SIZE)) + '%'
+    pixel.id = 'x'
+    makeBlankSquares()
+    addeventListenersToCanvas()
+}
+
+
+// Add squares
+function makeBlankSquares(){
+    for (let i = 0; i < SIZE; i++){
+        // console.log(i)
+        pixel.id = i
+        canvas.appendChild(pixel.cloneNode(true))
+
+    }
+}
 
 
 function createTool(t){
@@ -79,53 +91,34 @@ palate.addEventListener('click', function(e){
 })
 
 
-makeBlankSquares()
-// Add squares
-function makeBlankSquares(){
-    for (let i = 0; i < SIZE; i++){
-        // console.log(i)
-        pixel.id = i
-        canvas.appendChild(pixel.cloneNode(true))
-
-    }
-}
-
 function paint(squares){ // takes an array of ids and changes the colour of each one
     squares.forEach(function (i){
         document.getElementById(i).style.backgroundColor = color
     })
 }
+function addeventListenersToCanvas(){
+    canvas.addEventListener('click', function(e){
+        id = e.target.id
+        console.log('clicked', id)
+        if (id !== 'canvas'){
+        if (tool == 'fill'){
+            fill(e)
+        } else {
+            //    paint(id)
+            document.getElementById(id).style.backgroundColor = color
+        }
+        }
+    })
 
-canvas.addEventListener('click', function(e){
-    id = e.target.id
-    console.log('clicked', id)
-    if (id !== 'canvas'){
-       if (tool == 'fill'){
-           fill(e)
-       } else {
-        //    paint(id)
-        document.getElementById(id).style.backgroundColor = color
-       }
-    }
-})
+    canvas.addEventListener('mouseup', stopPainting)
+    canvas.addEventListener('mousedown', function(e){
+        id = e.target.id
+        console.log('Mouse Down!', id)
+        
 
-canvas.addEventListener('mouseup', stopPainting)
-// canvas.addEventListener('mouseleave', stopPainting)
-// canvas.addEventListener('mouseenter', startPainting, true)
-canvas.addEventListener('mousedown', function(e){
-    id = e.target.id
-    console.log('Mouse Down!', id)
-    
-
-    canvas.addEventListener('mouseenter', startPainting, true)
-    // canvas.addEventListener('dblclick', fill)
-
-    // canvas.addEventListener('mousemove', function(x){
-    //     console.log('moving mouse', x)
-    // })
-    // canvas.addEventListener('mousemove', startPainting())
-    // document.getElementById(id).style.backgroundColor = 'red'
-})
+        canvas.addEventListener('mouseenter', startPainting, true)
+    })
+}
 
 function clearAll(){
     let r = confirm('Erase everything and start over?')
@@ -136,7 +129,8 @@ function clearAll(){
         canvas = document.createElement('div')
         canvas.id = 'canvas'
         body.appendChild(canvas)
-        makeBlankSquares()
+        // makeBlankSquares()
+        init()
         // readd event listeners
     }
     return
@@ -166,9 +160,7 @@ function flower2(centerId, blank, fillColor){
     if (center.style.backgroundColor == blank) {
         center.style.backgroundColor = fillColor
         flower2(parseInt(centerId)-1, blank, fillColor) //left
-        // console.log(centerId)
         flower2(parseInt(centerId)+1, blank, fillColor) // right
-
         flower2(parseInt(centerId)+LINE, blank, fillColor) // down
         flower2(parseInt(centerId)-LINE, blank, fillColor) // up
 
@@ -212,13 +204,6 @@ function stopPainting(e){
     isMouseUp = false
     canvas.removeEventListener('mouseenter', startPainting, true)
 }
-
-
-
-// on mousedown
-// add event listener that turns pixels passed through red 
-// on mouseup
-// remove event listener
 
 function save(){
     let children = canvas.children;
