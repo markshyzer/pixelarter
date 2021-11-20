@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+}
+
+#canvas {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vmin;
+    height: 80vmin;
+    border: thin solid black;
+}
+
+.pixel {
+    border: thin dotted lightblue;
+    width: 33%;
+    height: 33.5%;
+
+}
+
+#palate {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 490px;
+    height: fit-content;
+    border: thin solid black;
+    margin-left: 10px;
+    background-color: darkgray;
+}
+
+.paintPot, .toolButton {
+    /* margin: 4px; */
+    /* border: thin solid grey; */
+    height: 36px;
+    width: 36px;
+    font-size: x-large;
+}
+
+.selected {
+    border: thick solid fuchsia;
+}
+
+#draw::before {
+    content: '🖋'
+}
+
+#fill::before {
+    content: '🎨'
+}
+
+#clear::before {
+    content: '🗑'
+}
+
+#paint::before {
+    content: '🖌'
+}
+
+#toggleGrid::before {
+    content: '⊞'
+}
+
+#spray::before {
+    content: '🎆'
+}
+
+#save::before {
+    content: '💾'
+}
