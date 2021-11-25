@@ -102,8 +102,9 @@ function resize(){
             alert("Height must be a number from 1 to 150")
             return
         }
+        clearAll()
     }
-    clearAll()
+
 }
 
 function addeventListenersToCanvas(){
