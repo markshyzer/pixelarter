@@ -1,0 +1,1 @@
+web: gunicorn pixelart.wsgi --log-file -
