@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-color: papayawhip;
+}
+
+#canvas {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    border: thin solid black;
+}
+
+.pixel {
+    border: thin dotted lightblue;
+}
+
+#toolbar {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#paintPots {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50vh;
+    height: 50vh;
+}
+
+.paintPot {
+    height: 8.33%;
+    width: 8.33%;
+}
+
+.paintPot:hover, .toolButton:hover {
+    cursor: pointer;
+}
+
+.pixel:hover {
+    cursor: cell;
+}
+
+.toolButton {
+    height: 10vmin;
+    width: 10vmin;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 6px;
+    border: thick solid peachpuff;
+
+}
+
+.selected {
+    border: thick dashed midnightblue;
+}
+
+#draw {
+    background-image: url('draw.png');
+}
+
+#fill {
+    background-image: url('fill.png');
+}
+
+#paint {
+    background-image: url('paint.png');
+}
+
+#clear {
+    background-image: url('clear.png');
+}
+
+#toggleGrid {
+    background-image: url('grid.png');
+}
+
+#spray {
+    background-image: url('spray.png');
+}
+
+#download {
+    background-image: url('save.png');
+}
+
+#resize {
+    background-image: url('resize.png');
+}

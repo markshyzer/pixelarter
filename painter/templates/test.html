@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="2" > -->
+    <!-- <link rel="stylesheet" href="test.css"> -->
+    <title>Pixelpainter</title>
+ </head>
+ {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'painter/test.css' %}">
+
+<body>
+    <div id='paintPots'></div>
+    <div id='toolbar'></div>
+    <script>
+        var CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+    <script src="{% static 'painter/colorcodes.js' %}"></script>
+    <script src="{% static 'painter/test.js' %}"></script>
+</body>
+</html>
