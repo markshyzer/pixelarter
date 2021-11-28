@@ -29,6 +29,8 @@ Click tools and colours to select them. Using the Draw, Paint, or Spray tool, cl
 
 [Watch demo](https://youtu.be/s54NOhReqa0)
 
+[Try it out](https://pixelarter.herokuapp.com)
+
 
 
 
